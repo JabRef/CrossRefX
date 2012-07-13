@@ -1,0 +1,27 @@
+apply plugin: 'application'
+apply plugin: 'eclipse'
+
+mainClassName = "ctex.Main"
+
+repositories {
+	maven {
+		url "http://repo1.maven.org/maven2/"
+	}
+	maven {
+		url "http://download.java.net/maven/2/"
+	}
+	maven {
+		url "http://developer.k-int.com/maven2"
+	}
+}
+dependencies {
+    compile group: 'org.apache.derby', name: 'derby', version: '10.9.1.0'
+	compile group: 'org.apache.pdfbox', name: 'fontbox', version: '1.7.0'
+	compile group: 'org.apache.pdfbox', name: 'jempbox', version: '1.7.0'
+	compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '1.7.0'
+	compile group: 'log4j', name: 'log4j', version: '1.2.17'
+	compile group: 'commons-logging', name: 'commons-logging', version: '1.1.1'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.21'
+	compile group: 'com.jgoodies', name: 'common', version: '1.1.1'
+	compile group: 'com.jgoodies', name: 'looks', version: '2.4.0'
+} 

@@ -1,0 +1,199 @@
+\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{textcomp}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{../commands_en}
+
+\usepackage{xcolor}
+\definecolor{darkblue}{rgb}{0,0,.5}
+\definecolor{black}{rgb}{0,0,0}
+\hypersetup{
+	breaklinks=true,
+	bookmarksnumbered=true,
+	bookmarksopen=true,
+	bookmarksopenlevel=1,
+	breaklinks=true,
+	colorlinks=true,
+	pdfstartview=Fit,
+	pdfpagelayout=SinglePage,
+	%
+	filecolor=darkblue,
+	urlcolor=darkblue,
+	linkcolor=black,
+	citecolor=black
+}
+
+
+\title{User Manual to \crossrefx}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+\crossrefx is a program to manage bibliographic references in the CrossTeX
+format for LaTeX files. It is also possible to edit BibTeX-Files.
+A detailed CrossTeX documentation can be found at
+\url{http://www.cs.cornell.edu/people/egs/crosstex/index.php}.
+The program by default uses an internal Apache Derby database, but it is also
+possible to connect to a MySQL database.
+
+Thanks to Mark James, FAMFAMFAM  \url{http://www.famfamfam.com/} for putting the
+icons at the disposal by CC BY 3.0
+\url{http://creativecommons.org/licenses/by/3.0/} license.
+\section{Installation \& Startup}
+\crossrefx is written entirely in Java, so for the program to work you will need
+to have Java Runtime Environment
+(\url{http://www.oracle.com/technetwork/java/javase/downloads/index.html})
+installed correctly on your machine.
+
+Having Java installed, to run the program you just have to execute
+\texttt{crosstex-X.X.jar} in the program folder. Using Linux, starting in a
+terminal could look like this: \texttt{java -jar \$DIR/crosstex-X.X.jar}.
+\section{Quick-Start}
+\input{quickstart_en}
+\section{Functions}
+At this point we want to give a short overview about what \crossrefx is capable
+of.
+\subsection{Create a new database}
+To create a new database choose \clickpath{\file}{\newdatabase}.
+In the new window select \internaldatabase, if you want to work locally without
+a MySQL server. You have to set the name of the database. Click to \connectdb to
+enter a database prefix.
+
+If you choose a MySQL database in addition you have enter the IP adress of the
+MySQL server to which you want to connect. To authenticate you enter your
+username and your password. To create the new database click \ok. As a more
+simple way you can create a new database also by clicking on the blank page
+\includegraphics{../../images/application_add.png} icon on the toolbar.
+\subsection{Open a file}
+To open a CrossTeX file, just click \clickpath{\file}{\openfile}.
+Then you can either select an internal database or use a MySQL database if you
+like. Enter the path to the file you want to open or click the \browse button
+and select your file. To display all signs in the right way select the encoding
+of your file. Click to \connectdb and select or enter a prefix. If you want to
+work with a MySQL database, you additionally have to enter an IP-adress, port,
+your username and your password.
+Also you can simply click on this \includegraphics{../../images/folder.png}
+ symbol in the toolbar to open a file into a internal database.
+ 
+\textbf{Please notice:} \textit{@default}-commands can be read, but all default
+values will be written plaintext to the according spot. So reading and
+afterwards saving a file with \textit{@default}-commands will erase them!
+\subsection{Open a database}
+To open a database which is created with \crossrefx choose
+\clickpath{\file}{\openfile}. Enter the IP-adress of the database server and
+your personal data. Click to \connectdb and select the prefix of the database
+which you want to open.
+\subsection{Export database to an CrossTeX-File}
+To save a currently opened database into a CrossTeX file (.xtx) click
+\clickpath{\file}{\exportdatabase} or on \includegraphics{../../images/disk.png}
+in the menubar. The database will be exported into the xtx-file from which the
+database was opened or saved last. To save the database to a different path or
+with a different filename you can choose \clickpath{\file}{\exportdatabaseas} or
+\includegraphics{../../images/disk_multiple.png}.
+\subsection{Add a new entry}
+To add a new entry to an opened database click \clickpath{\edit}{\newentry} or
+on \includegraphics{../../images/report_add.png} and select the type of which
+your entry should created. A form will open and you can enter your data for the
+new entry.
+See Edit an entry (\ref{editentry}) to get to know how to change previously
+created entries.
+\subsection{Edit an entry}\label{editentry}
+To edit a attribute of an entry, doubleclick on the entry a new subwindow will
+open. There are two tabs shown, in the tab \requiredfields you can edit all
+attributes which are necessary for this entry type.
+In the second one, called  \optionalfields, you can edit all optional
+attributes of the entry type. To set conditional options press the button
+\includegraphics{../../images/script.png} right of the textfield. In the new
+subwindow you can the conditons and swayed attributetypes and values. Click
+on \includegraphics{../../images/add.png} to save the condition and add more if
+you want to. To remove a conditon click on
+\includegraphics{../../images/delete.png}.
+
+To link to an entry press button
+\includegraphics{../../images/table_relationship.png} right of the textfield. To
+save you changes click \ok or \apply.
+
+To every entry you can add a files into database. To do this click on
+\optionalfields. In the first field click on
+\includegraphics{../../images/add.png} to add files to this entry. With
+\includegraphics{../../images/delete.png} you can delete them. To open a file
+select it and click on \includegraphics{../../images/folder.png}.
+
+See also Undo and Redo (\ref{undoredo}).
+\subsection{Edit includes}
+To include other CossTex databases select \clickpath{\edit}{\IncludeText}. In
+this dialog you can select one of the listed includes and edit them in the
+\LabelText textfield or you can delete them with the \remove button. Enter the
+name of an other CrossTex database to include it to your currently opened
+database.
+\subsection{Customize entry types}
+In some cases new entry types are necessary or you might just want to customize
+required and optional fields of an existing type. To do this select \edit
+$\rightarrow$ \customizeentrytyp. The first list of the opened dialog lists all
+types that are currently available in your document. In the second column you
+see all required and in the third column all optional attributes of the selected
+entry type.
+
+New entry types you can add by entering a name in the textfield and press \add.
+To delete a entry type just select it and press \remove.
+
+To add required or optional types use the listbox below the corresponding
+column and the \add button. With the up and down buttons you can order the
+attributes as you like.
+\subsection{Using the search}
+To search entries with a specific content you can use the searchfield in the
+toolbar. To start the search press the button
+\includegraphics{../../images/find.png} to right of the field or hit Enter.
+The number of results will be shown right of the
+\includegraphics{../../images/resultset_previous.png} and
+\includegraphics{../../images/resultset_next.png} buttons. With the
+\includegraphics{../../images/resultset_previous.png} and
+\includegraphics{../../images/resultset_next.png} button you can navigate back
+and forth through the given results.
+\subsection{Undo \& Redo}
+\label{undoredo}
+These two buttons are made for reverting changes in the textfields (for example
+while writing a new entry or editing an existing one). By pressing one of the
+buttons once, a whole word is undone or redone.
+\subsection{Edit an entry with plain-text editor} 
+To edit a entry \"by hand\", select the entry. Right-click on it and choose
+\editplain editor or click on \clickpath{\edit}{\editplain}. A
+new subwindow with the CrossTex code will open. You can check the syntactical
+correctness with the \checksyntax button. This will not add your changes to
+database. To do this click on \checksave Click to \cancel quit this sub-window
+without save anything.
+\subsection{Show Objects \& Resolve Objects}
+Here you can set up what happens to links between objects (this refers to the
+object oriented behaviour, which is possible in CrossTeX).
+If \showobjects is selected, such links will just be shown in the table, marked
+with a \textrangle\textrangle prefix. Selecting \resolveobjects tries to follow
+the link as far as possible and to show the resolved value in the table.
+\section{Preferences}
+Here you can change the language of \crossrefx or adjust the shortcuts
+(\ref{shortcuts}) and the view (\ref{view}) as you like.
+\subsection{Configuring language}
+\label{language} 
+To set the language to which you prefer, click on
+\clickpath{\extras}{\clickpath {\preferences}{\generalpreferences}}. You can
+select your language by the list. At moment English (EN), German (DE) and France
+(FR) are supported. Feel free to add more languages to \crossrefx
+\subsection{Configuring shortcuts}\label{shortcuts}
+To configure a shortcut, you can choose a different modification key + some
+number or letter from the listboxes. Of course setting two shortcuts to the same
+value is not possible.
+Also you should be aware that using the combination of \textit{Shift} + some
+letter might cause some inappropriate behaviour.
+\subsection{Configuring shown columns}\label{view}
+To select the shown columns, click on
+\clickpath{\extras}{\clickpath{\preferences}{\adjustview}}. Here you can select
+more types from the combobox and add them with
+\includegraphics{../../images/add.png}. To remove types selct them and click on
+\includegraphics{../../images/delete.png}.
+\end{document}
